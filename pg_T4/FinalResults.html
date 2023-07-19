@@ -1,0 +1,19 @@
+{{ block title }}Earnings{{ endblock }}
+{{ block content }}
+
+    <p>
+     <ul>
+        <li>Round {{  payoff_round }} was randomly selected for payment.</li>
+        <li> You contributed {{ my_cont}} in that round.</li>
+        <li>Total contribution in that round was {{tc}}</li>
+       <li> Your final payoff is therefore {{ mypayoff}}.</li>
+       <li> Your Earnings from this experiment is therefore {{earnings}} including the show-up 
+        fee of {{session.config.participation_fee}}.</li>
+        
+     </ul>   
+      
+    </p>
+
+    {{ next_button }}
+
+{{ endblock }}

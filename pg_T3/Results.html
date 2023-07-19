@@ -1,0 +1,15 @@
+{{ block title }}Results{{ endblock }}
+{{ block content }}
+<p>
+    <li> You started with an endowment of {{ C.ENDOWMENT }}.</li>
+    <li> You contributed {{player.contribution}}</li>
+    <li> Your group contributed {{ group.total_contribution }}.</li>
+    <li> This resulted in an individual share of {{ group.individual_share }}.</li>
+    <li> Your payoff from this round is therefore {{ player.payoff }}.</li>
+</p>
+
+{{ next_button }}
+
+{{ endblock }}
+
+

@@ -1,0 +1,147 @@
+{{ block title }}
+    Instructions
+{{ endblock }}
+{{ block content }}
+
+<h2>Introduction  </h2>
+<p>Welcome to this experiment and thank you for participating.  
+You will be given 15 minutes to finish reading these instructions. 
+Please read the instructions carefully, because your earnings from this experiment will depend on how well you understood the instructions. 
+Please do not talk to the other participants until the session is finished and do not use any electronic devices. 
+After you finish reading these instructions, we will ask you to complete a short questionnaire to ensure that you understand the instructions completely.  
+If you have any questions please feel free to ask the experimenter.</p>
+
+<p>The experiment consists of {{C.NUM_ROUNDS}} rounds.
+     At the beginning of the experiment, you will be randomly matched with 3 other people in this room. 
+     Therefore, there are 4 people, including yourself, participating in your group. 
+     Every round, all groups will be randomly re-matched, 
+     which means that the participants in a group will most probably not be the same from round to round. 
+     You will not learn who is matched with you in any round, neither during nor after today's session.</p>
+<p>Each round is identical. 
+    In each round, you and the members of your group will make decisions and earn tokens. 
+    The token earnings depend on the decisions you and the other participants of the group make, 
+    which we will explain below. At the end of the experiment one of the {{C.NUM_ROUNDS}} rounds will be selected at random to be played out for real. 
+    Your earnings from the experiment will depend on your token earnings in this randomly selected round. 
+    These token earnings will be converted into cash at a rate of:
+    <ul>
+        <li> £{{session.config.real_world_currency_per_point}} per token </li>
+    </ul>
+    and will be added to the show-up fee of {{session.config.participation_fee}}.</p>
+<p>We first introduce you to the basic decision situation. 
+    Then, you will complete a pre-study questionnaire on the screen in front of you, 
+    which is intended to help you understand the decision situation.</p>
+<h2>Interaction</h2>
+<p>At the beginning of every round, 
+    each group member has to decide on the allocation of {{C.ENDOWMENT}}  which they receive as an endowment. 
+    You can put these {{C.ENDOWMENT}}  into your <strong> private account</strong> or you can invest them fully into a <strong>common project account</strong>.</p>
+<p> <u> Income from the private account</u>: 
+    You will earn {{C.ENDOWMENT}} if you put your endowment to your private account. 
+    No one except you earns anything from tokens you put in your private account.</p>
+<p> <u> Income from the common project account</u>: 
+    Each group member will profit equally from the tokens you or any other group member put into the common project account. 
+    The income for each group member from the project will be determined as follows:</p>
+    <math display="block">
+        <mfrac>
+          <mn>(sum of all contributions)  &times; 3</mn>
+          <mn>4</mn>
+        </mfrac>
+      </math>
+<p>The intuition behind the above formula is that:</p>
+    <ul>
+        <li>At the end of the round the contributions of all participants in the group are added together.</li>
+        <li>This sum of contributions is then multiplied by a factor of {{C.MULTIPLIER}}. These are
+        the total returns.</li>
+        <li>The total returns are then split equally among all the members of the group, independently of whether they have contributed to the common project or not.</li>
+    </ul>
+    <p>If for example, the sum of all contributions is {{C.EXAMPLE}}, 
+        then you and the other members of the group will each earn 
+        <math display= "block">
+            <mfrac>
+                <mn> ({{C.EXAMPLE}} &times; {{C.MULTIPLIER}})</mn>
+                <mn> {{C.PLAYERS_PER_GROUP}}</mn>
+            </mfrac> <mo>= {{C.EXAMPLE_PAYOFF}}</mo> {{C.EXAMPLE_PAYOFF}}
+        </math>    
+         from the common project. 
+       <p> If the sum of all contributions is 0 tokens, you and the other members of the group will each earn 0 tokens income from the common project.</p>
+       <p> If the sum of all contributions is 40 tokens, you and the other members of the group will each earn 30 tokens income from the comment project. </p>
+    </p>
+    <p><u> Your Total Income</u>: 
+        Your total income is the sum of your income from your private account and the income from the common project.</p>
+    <p>The participants in each group will make decisions sequentially, one after the other. 
+        The computer will assign roles (order in the sequence) to each member of the group randomly. 
+        If your role is Player 1 then you will be the first in your group to decide whether you want to 
+        put your endowment to your private or the common project account. 
+        If your role is Player 2 then you will make your decision second. If your role is Player 3 
+        then you will make your decision third. 
+        If your role is Player 4 then you will make your decision last. 
+        Your role will be randomly determined in every round. </p>
+<h2>Information you will receive</h2>
+    <p>You will not learn about your position in the sequence, unless you are Player 1 or Player 2. 
+        In every round you will be given different scenarios and will be asked to make decisions in each of these scenarios. 
+        The scenarios presented to you will depend on your role. 
+        In each of the scenarios, you will be asked to make a binary decision about whether you want to contribute towards 
+        the common project, depending on what the other players will decide. 
+        Each scenario will contain information regarding the total contribution to the common project made 
+        by the players before you.</p>
+    <p>Depending on your role, you will be given at least one of these scenarios:</p>
+        <ul>
+          <li>There was no previous player. How much do you want to contribute to the common project account?</li>
+          <li>If the previous player contributed 0 in total to the common project, how much do you want to contribute to the common project account?</li>
+          <li>If the previous player contributed 10 in total to the common project, how much do you want to contribute to the common project account?</li>
+          <li>If the previous 2 players contributed 0 in total to the common project, how much do you want to contribute to the common project account?</li>
+          <li>If the previous 2 players contributed 10 in total to the common project, how much do you want to contribute to the common project account?</li>
+          <li>If the previous 2 players contributed 20 in total to the common project, how much do you want to contribute to the common project account?</li>
+        </ul>
+    <p>You will need to respond to these scenarios truthfully, 
+        since your payment depends on what you and the other members of the group have actually chosen in that round. 
+        At the end of the round (and if this round has been chosen to be played for real), 
+        the computer will recall and match all participants' decisions in that round and will calculate the payoffs according to the scenario that actually occurred. For example, if Player 1 decided not to invest to the common project, the computer will recall Player’s 2 decision for that scenario and so on. The computer will calculate the total contribution, the total returns and the payoffs for each of the participants in the group.</p>
+    <h2>Summary</h2>
+        <ul>
+          <li>There will be {{C.NUM_ROUNDS}} rounds.</li>
+          <li>In each round you will be randomly matched with three other participants.</li>
+          <li>In each round you will receive an endowment of {{C.ENDOWMENT}} that you need to fully allocate either 
+            to your private account or to a common project account.</li>
+          <li>Tokens allocated to the private account bare no return. 
+            No one except you earns something from tokens allocated to your private account.</li>
+          <li>Tokens allocated to the common account are multiplied by a factor of {{C.MULTIPLIER}} and 
+            are equally split among all members of the group.</li>
+          <li>Members of the group will make decisions sequentially.</li>
+          <li>Your role in each round (position in the sequence) is randomly determined by the computer.</li>
+          <li>You will not learn about your position in the sequence, unless you are Player 1 or Player 2.</li><!--Change for t2,t3,4--> 
+          <li>You will be asked to make your choices for a series of scenarios that will present to you some information of 
+            what the 2 players before you did.</li> <!--Change for t2,t3,4--> 
+          <li>You will need to
+            indicate your contribution for all potential scenarios.</li>
+<li>At the end of all rounds, one round will be randomly selected to be played for real. 
+    This will determine your payment from the experiment.</li>
+<li>The computer will recall your decisions for that particular round and will match them with what actually occurred during this round, 
+    taking into consideration the choices of the other 3 members, in that particular scenario.</li>
+<li>The computer will calculate the total contribution, 
+    the total returns and the payoffs for each of the participants in the group.</li>
+</ul>
+
+<h2>Payment</h2>
+<p>Your payment will be completed in the form of a bank transfer. Once all sessions are completed, your details will be provided to the LUMS Finance Team who will send the payments via Agresso in due course.
+<br>
+If your details are not in the system, you can provide them following the links below:<br>
+UK bank accounts https://www.e-res.lancaster.ac.uk/OnlineDebitCredit/<br>
+Non UK bank account https://www.e-res.lancaster.ac.uk/internationalpayments/ 
+<br><br>
+If you have any questions please feel free to ask any of the experimenters for clarifications. 
+
+<br><br>
+If you have any queries or if you are unhappy with anything that happens concerning your participation in the study, please contact one of the experimenters:<br>
+Dr Sakib Anwar (sakib.anwar@winchester.ac.uk)<br>
+Dr Konstantinos Georgalos (k.georgalos@lancaster.ac.uk)
+<br><br>
+If you have any concerns or complaints that you wish to discuss with a person who is not directly involved in the research, you can also contact:<br>
+Professor Themis Pavlidis (Head of Economics Department, e.pavlidis@lancaster.ac.uk)
+
+<br><br>
+When you are ready, please press the button below to start the experiment. By participating to this experiment means you consent to the use of your anonymised choice data for the use of academic research purposes. 
+ </p>
+{{ next_button }}
+
+{{ endblock }}
+
